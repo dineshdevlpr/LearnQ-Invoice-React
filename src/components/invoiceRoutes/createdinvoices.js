@@ -4,6 +4,8 @@ export default function CreatedInvoices () {
 
     let [data, setdata] = useState([])
     // const authToken = localStorage.getItem("authToken")
+
+
   
     useEffect( () => {
         async function fetchData() {
@@ -48,11 +50,15 @@ export default function CreatedInvoices () {
                                     <h6 className="card-text"><b>Student's Last Name : {obj.studentLName}</b></h6>
                                     <h6 className="card-text"><b>Student's Email Id : {obj.studentEmail}</b></h6>
                                     <h6 className="card-text"><b>Class Title : {obj.classTitle}</b></h6>
-                                    <h6 className="card-text"><b>Class Start Time : {obj.startTime}</b></h6>
-                                    <h6 className="card-text"><b>Class End Time : {obj.endTime}</b></h6>
-                                    <h6 className="card-text"><b>Fee Per Hour : {obj.feePerHour}</b></h6>
+                                    <h6 className="card-text"><b>Class Start Time : {obj.startTime}hrs</b></h6>
+                                    <h6 className="card-text"><b>Class End Time : {obj.endTime}hrs</b></h6>
+                                    <h6 className="card-text"><b>Fee Per Hour : Rs.{obj.feePerHour}</b></h6>
                                     <h6 className="card-text"><b>Discount in Percentage : {obj.discount}%</b></h6>
-                                    <h6 className="card-text"><b>Created On : {obj.createdOn}</b></h6>
+                                    <h6 className="card-text"><b>Created On : {obj.createdOn}</b></h6><hr></hr>
+                                    <div className="card-text text-dark"><b>Total Hours : {parseInt(obj.endTime)-parseInt(obj.startTime)}hrs</b></div>
+                                    <div className="card-text bg-transparent"><b>Total Amount : Rs.{obj.feePerHour*(parseInt(obj.endTime)-parseInt(obj.startTime))}</b></div>
+                                    <div className="card-text bg-transparent"><b>Discount Amount : - Rs.{(obj.feePerHour*(parseInt(obj.endTime)-parseInt(obj.startTime))*(obj.discount/100))}</b></div>
+                                    <div className="card-text bg-transparent"><b>Total Amount Payable : Rs.{(obj.feePerHour*(parseInt(obj.endTime)-parseInt(obj.startTime))-(obj.feePerHour*(parseInt(obj.endTime)-parseInt(obj.startTime))*(obj.discount/100)))}</b></div>
                                 </div>
                             </div>
                         </div>
