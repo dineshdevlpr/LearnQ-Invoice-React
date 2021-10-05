@@ -5,7 +5,6 @@ export default function CreatedInvoices () {
     let [data, setdata] = useState([])
     // const authToken = localStorage.getItem("authToken")
 
-
   
     useEffect( () => {
         async function fetchData() {
