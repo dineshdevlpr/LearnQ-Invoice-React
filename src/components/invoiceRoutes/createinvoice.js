@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import loader from '../../loader.svg'
 
 
 export default function Create() {
@@ -20,6 +21,9 @@ export default function Create() {
     const [discount, setDiscount] = useState("");
     const [createdOn, setCreatedOn] = useState("");
 
+    
+    var [isLoading , setIsLoading] = useState(false)
+
     // const authToken = localStorage.getItem("authToken")
     const history = useHistory();
 
@@ -30,6 +34,7 @@ export default function Create() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsLoading(true)
         await fetch("https://learnq-invoice.herokuapp.com/invoice/createinvoice", {
         method: "POST",
         mode: 'cors',
@@ -60,12 +65,13 @@ export default function Create() {
       .catch((error) => {
         console.error('Error:', error);
       });
+      
     
     }
 
     return (
         <>
-            <div className="container">
+        {isLoading ? (<div className="text-center"><img src={loader} alt='fetching data'/></div>) : (<div className="container">
                 <div className="row justify-content-center align-items-center">
                     <div className="col-md-6">
                         <div className="col-md-12">
@@ -130,7 +136,8 @@ export default function Create() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>) }
+            
         </>
     )
 }
